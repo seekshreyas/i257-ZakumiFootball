@@ -1,15 +1,15 @@
 <?php
 //connect to mysql
 $db = mysql_connect('localhost', 'root', 'area32') or die('Unable to connect. check ur connection parameters'); 
-mysql_select_db('zakumi', $db) or die(mysql_error($db));
-$query = 'SELECT * FROM PLAYERS';
-$result = mysql_query($query, $db) or die(mysql_error($db));
+// mysql_select_db('zakumi', $db) or die(mysql_error($db));
+// $query = 'SELECT * FROM PLAYERS';
+// $result = mysql_query($query, $db) or die(mysql_error($db));
 
-while($row = mysql_fetch_array($result))
-{
-	extract($row);
-	echo($NAME);
-}
+// while($row = mysql_fetch_array($result))
+// {
+// 	extract($row);
+// 	echo($NAME);
+// }
 
 ?>
 
