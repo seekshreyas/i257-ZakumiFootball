@@ -1,3 +1,6 @@
+# Zakumi - Football database project
+Template taken from html5 boilerplate
+
 # [HTML5 Boilerplate](http://html5boilerplate.com)
 
 HTML5 Boilerplate is a professional front-end template for building fast,
