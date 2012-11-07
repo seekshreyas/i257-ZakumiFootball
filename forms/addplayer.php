@@ -1,3 +1,18 @@
+<?php
+//connect to mysql
+$db = mysql_connect('localhost', 'root', 'area32') or die('Unable to connect. check ur connection parameters'); 
+mysql_select_db('zakumi', $db) or die(mysql_error($db));
+$query = 'SELECT * FROM PLAYERS';
+$result = mysql_query($query, $db) or die(mysql_error($db));
+
+while($row = mysql_fetch_array($result))
+{
+	extract($row);
+	echo($NAME);
+}
+
+?>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -36,35 +51,35 @@
                 </li>
                 <li>
                     <label for="formfield-playerheight">Height</label>
-                    <input type="text" id="formfield-playername" />
+                    <input type="text" id="formfield-playerheight" />
                 </li>
                 <li>
                     <label for="formfield-playerweight">Weight</label>
-                    <input type="text" id="formfield-playername" />
+                    <input type="text" id="formfield-playerweight" />
                 </li>
                 <li>
                     <label for="formfield-playernationality">Nationality</label>
-                    <input type="text" id="formfield-playername" />
+                    <input type="text" id="formfield-playernationality" />
                 </li>
                 <li>
                     <label for="formfield-playerssn">SSN</label>
-                    <input type="text" id="formfield-playername" />
+                    <input type="text" id="formfield-playerssn" />
                 </li>
                 <li>
                     <label for="formfield-playersalary">Salary</label>
-                    <input type="text" id="formfield-playername" />
+                    <input type="text" id="formfield-playersalary" />
                 </li>
                 <li>
                     <label for="formfield-playerstreet">Street</label>
-                    <input type="text" id="formfield-playername" />
+                    <input type="text" id="formfield-playerstreet" />
                 </li>
                 <li>
                     <label for="formfield-playercity">City</label>
-                    <input type="text" id="formfield-playername" />
+                    <input type="text" id="formfield-playercity" />
                 </li>
                 <li>
                     <label for="formfield-playercountry">Country</label>
-                    <input type="text" id="formfield-playername" />
+                    <input type="text" id="formfield-playercountry" />
                 </li>
             </ul>
         </form>
