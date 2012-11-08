@@ -92,6 +92,116 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+/* Acrowit Main CSS Document */
+
+/* basic style */
+@font-face {
+    font-family: "OpenSansRegular";
+    src: url('../resources/fonts/opensans/opensans_regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "OpenSansBold";
+    src: url('../resources/fonts/opensans/opensans_bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "OpenSansRegular";
+    src: url('../resources/fonts/opensans/opensans_light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+body{
+    background:url(../img/bg_football.png) repeat;
+    font-family: "OpenSansRegular";
+    margin:0;
+    padding:0;
+    float:left;
+    width:100%;
+}
+
+/*div*/
+.wrapper_content{
+    width:960px;
+    margin:0 auto;
+}
+
+    #container_top{
+        float:left;
+        width:100%;
+        padding:0;
+        margin:0;
+        background:rgba(0,0,0,0.8);
+        color:#fff;
+    }
+
+        
+
+        h1{
+            float:left;
+            margin-bottom:0;
+            padding-bottom:0;
+        }
+
+        /*p*/
+        .tagline{
+            float:right;
+        }
+
+        .logoline{
+            float:left;
+            clear:left;
+            margin:0;
+            padding:0;
+        }
+
+    
+    #container_middle{
+        float:left;
+        width:100%;
+        padding:0;
+        margin:0;
+        color:#fff; 
+    }
+
+        h2 {
+            float:left;
+            clear:both;
+            width:80%;
+        }
+
+        .generalform{
+            clear:both;
+            float:left;
+            width:80%;
+        }
+
+            .generalform ul{
+                margin:0;
+                padding:0;
+                list-style:none;
+                width:80%;
+            }
+
+                .generalform li{
+                    margin:0.5em 0;
+                    float:left;
+                    clear:left;
+                    width:100%;
+                }
+
+                    .generalform input, 
+                    .generalform label{
+                        float:left;
+                        clear:left;
+                    }
 
 
 

@@ -38,37 +38,33 @@
 
         <div id="container_middle">
             <div class="wrapper_content">
-                <h2>Add Players</h2>
+                <h2>Add Manager</h2>
 
                 <form class="generalform" action="#">
                     <ul>
                         <li>
-                            <label for="formfield-playername">Player Name</label>
-                            <input type="text" id="formfield-playername" />
+                            <label for="formfield-managername">Manager Name</label>
+                            <input type="text" id="formfield-managername" />
                         </li>
                         <li>
-                            <label for="formfield-playerdob">Date of Birth</label>
-                            <input type="date" id="formfield-playerdob" />
+                            <label for="formfield-managernationality">Nationality</label>
+                            <input type="text" id="formfield-managernationality" />
                         </li>
                         <li>
-                            <label for="formfield-playernationality">Nationality</label>
-                            <input type="text" id="formfield-playernationality" />
+                            <label for="formfield-managersalary">Salary</label>
+                            <input type="text" id="formfield-managersalary" />
                         </li>
                         <li>
-                            <label for="formfield-playersalary">Salary</label>
-                            <input type="text" id="formfield-playersalary" />
+                            <label for="formfield-managerstreet">Street</label>
+                            <input type="text" id="formfield-managerstreet" />
                         </li>
                         <li>
-                            <label for="formfield-playerstreet">Street</label>
-                            <input type="text" id="formfield-playerstreet" />
+                            <label for="formfield-managercity">City</label>
+                            <input type="text" id="formfield-managercity" />
                         </li>
                         <li>
-                            <label for="formfield-playercity">City</label>
-                            <input type="text" id="formfield-playercity" />
-                        </li>
-                        <li>
-                            <label for="formfield-playercountry">Country</label>
-                            <input type="text" id="formfield-playercountry" />
+                            <label for="formfield-managercountry">Country</label>
+                            <input type="text" id="formfield-managercountry" />
                         </li>
                         <li>
                            <!--  <label for="formfield-playercountry">Country</label> -->

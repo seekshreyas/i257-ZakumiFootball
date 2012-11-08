@@ -38,37 +38,33 @@
 
         <div id="container_middle">
             <div class="wrapper_content">
-                <h2>Add Players</h2>
+                <h2>Add Teams</h2>
 
                 <form class="generalform" action="#">
                     <ul>
                         <li>
-                            <label for="formfield-playername">Player Name</label>
-                            <input type="text" id="formfield-playername" />
+                            <label for="formfield-teamname">Team Name</label>
+                            <input type="text" id="formfield-managername" />
                         </li>
                         <li>
-                            <label for="formfield-playerdob">Date of Birth</label>
-                            <input type="date" id="formfield-playerdob" />
+                            <label for="formfield-teamyrinexist">Existed Since</label>
+                            <input type="text" id="formfield-managernationality" />
                         </li>
                         <li>
-                            <label for="formfield-playernationality">Nationality</label>
-                            <input type="text" id="formfield-playernationality" />
+                            <label for="formfield-teamstadium">Team Stadium</label>
+                            <input type="text" id="formfield-teamstadium" />
                         </li>
                         <li>
-                            <label for="formfield-playersalary">Salary</label>
-                            <input type="text" id="formfield-playersalary" />
+                            <label for="formfield-teamstadiumcapacity">Capacity</label>
+                            <input type="text" id="formfield-teamstadiumcapacity" />
                         </li>
                         <li>
-                            <label for="formfield-playerstreet">Street</label>
-                            <input type="text" id="formfield-playerstreet" />
+                            <label for="formfield-teamcity">City</label>
+                            <input type="text" id="formfield-teamcity" />
                         </li>
                         <li>
-                            <label for="formfield-playercity">City</label>
-                            <input type="text" id="formfield-playercity" />
-                        </li>
-                        <li>
-                            <label for="formfield-playercountry">Country</label>
-                            <input type="text" id="formfield-playercountry" />
+                            <label for="formfield-teamyrbuilt">Stadium built in</label>
+                            <input type="text" id="formfield-teamyrbuilt" />
                         </li>
                         <li>
                            <!--  <label for="formfield-playercountry">Country</label> -->
