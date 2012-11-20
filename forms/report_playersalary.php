@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -39,40 +37,33 @@
 
         <div id="container_middle">
             <div class="wrapper_content">
-                <h2>Add Manager</h2>
+                <h2>Players in order of their salary</h2>
+                <table class="generaltable">
+                    <thead>
+                        <tr>
+                            <th>Players</th>
+                            <th>Salary</th>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            $db = mysql_connect('localhost', 'root', 'area32') or die('Unable to connect');
+                            mysql_select_db('ZAKUMI', $db) or die(mysql_error($db));
 
-                <form class="generalform" action="#">
-                    <ul>
-                        <li>
-                            <label for="formfield-managername">Manager Name</label>
-                            <input type="text" id="formfield-managername" />
-                        </li>
-                        <li>
-                            <label for="formfield-managernationality">Nationality</label>
-                            <input type="text" id="formfield-managernationality" />
-                        </li>
-                        <li>
-                            <label for="formfield-managersalary">Salary</label>
-                            <input type="text" id="formfield-managersalary" />
-                        </li>
-                        <li>
-                            <label for="formfield-managerstreet">Street</label>
-                            <input type="text" id="formfield-managerstreet" />
-                        </li>
-                        <li>
-                            <label for="formfield-managercity">City</label>
-                            <input type="text" id="formfield-managercity" />
-                        </li>
-                        <li>
-                            <label for="formfield-managercountry">Country</label>
-                            <input type="text" id="formfield-managercountry" />
-                        </li>
-                        <li>
-                           <!--  <label for="formfield-playercountry">Country</label> -->
-                            <input type="submit" id="formfield-submit" value="Submit" />
-                        </li>
-                    </ul>
-                </form>
+                            $query = 'SELECT NAME, SALARY FROM PLAYERS ORDER BY PLAYERS.SALARY DESC';
+                            $result = mysql_query($query, $db) or die(mysql_error($db));
+
+                            while($row = mysql_fetch_array($result))
+                            {
+                                extract($row);
+                                echo '<tr> <td>' . $NAME . '</td> <td>' . $SALARY . '</td></tr>'; 
+                            }
+                        ?>
+
+                    </tbody>
+                
+                </table>
+               
+                
             </div>
 
         </div>

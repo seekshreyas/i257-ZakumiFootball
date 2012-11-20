@@ -28,9 +28,10 @@
        
         <div id="container_top">
              <div class="wrapper_content">
-                <h1>Zakumi</h1>
+                <img id="logo" src="../img/logo.png" alt="logo" title="logo" />
+                <!-- <h1>Zakumi</h1> -->
                 <p class="tagline">players-managers-teams</p>
-                <p class="logoline">football database</p>
+                <!-- <p class="logoline">football database</p> -->
                 
              </div>
         </div>

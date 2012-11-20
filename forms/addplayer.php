@@ -28,9 +28,10 @@
        
         <div id="container_top">
              <div class="wrapper_content">
-                <h1>Zakumi</h1>
+                <img id="logo" src="../img/logo.png" alt="logo" title="logo" />
+                <!-- <h1>Zakumi</h1> -->
                 <p class="tagline">players-managers-teams</p>
-                <p class="logoline">football database</p>
+                <!-- <p class="logoline">football database</p> -->
                 
              </div>
         </div>
@@ -40,35 +41,35 @@
             <div class="wrapper_content">
                 <h2>Add Players</h2>
 
-                <form class="generalform" action="#">
+                <form class="generalform" action="insert_intotable.php" method="POST">
                     <ul>
                         <li>
                             <label for="formfield-playername">Player Name</label>
-                            <input type="text" id="formfield-playername" />
+                            <input type="text" id="formfield-playername" name="formfield-playername" />
                         </li>
                         <li>
                             <label for="formfield-playerdob">Date of Birth</label>
-                            <input type="date" id="formfield-playerdob" />
+                            <input type="date" id="formfield-playerdob" name="formfield-playerdob" />
                         </li>
                         <li>
                             <label for="formfield-playernationality">Nationality</label>
-                            <input type="text" id="formfield-playernationality" />
+                            <input type="text" id="formfield-playernationality"  name="formfield-playernationality" />
                         </li>
                         <li>
                             <label for="formfield-playersalary">Salary</label>
-                            <input type="text" id="formfield-playersalary" />
+                            <input type="text" id="formfield-playersalary"  name="formfield-playersalary" />
                         </li>
                         <li>
                             <label for="formfield-playerstreet">Street</label>
-                            <input type="text" id="formfield-playerstreet" />
+                            <input type="text" id="formfield-playerstreet"  name="formfield-playerstreet" />
                         </li>
                         <li>
                             <label for="formfield-playercity">City</label>
-                            <input type="text" id="formfield-playercity" />
+                            <input type="text" id="formfield-playercity"  name="formfield-playercity" />
                         </li>
                         <li>
                             <label for="formfield-playercountry">Country</label>
-                            <input type="text" id="formfield-playercountry" />
+                            <input type="text" id="formfield-playercountry"  name="formfield-playercountry" />
                         </li>
                         <li>
                            <!--  <label for="formfield-playercountry">Country</label> -->

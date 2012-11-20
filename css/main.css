@@ -142,7 +142,9 @@ body{
         color:#fff;
     }
 
-        
+       #logo{
+        float:left;
+       } 
 
         h1{
             float:left;
@@ -203,6 +205,22 @@ body{
                         clear:left;
                     }
 
+        .generaltable{
+            float:left;
+            clear:both;
+            margin:1em 0;
+            width:60%;
+        }
+            .generaltable thead tr{
+                border-bottom:1px dashed #fff;
+            }
+                .generaltable th{
+                    text-align: left;
+                }
+
+                .generaltable td{
+                    font-size:0.75em;
+                }
 
 
 
