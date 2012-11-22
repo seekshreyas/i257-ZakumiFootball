@@ -7,9 +7,10 @@
 
 <!-- Add your site or application content here -->
 <?php include 'templates/pagetop.php' ?>
+<?php include 'templates/header.php' ?>
 <?php
     echo 'Zakumi goes live for ';
-    echo FAVPLAYER;
+   
 ?>
 
 <?php include 'templates/pagebottom.php' ?>
