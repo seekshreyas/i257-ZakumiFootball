@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    $_SESSION['username'] = 'shreyas';
+    $_SESSION['authuser'] = 1;
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -24,8 +29,11 @@
         <!-- Add your site or application content here -->
         <p>This is the project website for Zakumi football. Course Info 257. By Aisha Kigongo, Ashley DeSouza, Shreyas</p>
         <?php
-            echo 'Zakumi goes live';
+            echo 'Zakumi goes live for ';
+            echo FAVPLAYER;
         ?>
+
+        <a href="forms/report_playersalary.php">report</a>
 
         <script src="js/vendor/jquery-1.8.2.min.js"></script>
         <script src="js/plugins.js"></script>
