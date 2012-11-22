@@ -6,8 +6,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
+        <title>Zakumi | Home</title>
+        <meta name="description" content="football database">
         <meta name="viewport" content="width=device-width">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -23,6 +23,9 @@
 
         <!-- Add your site or application content here -->
         <p>This is the project website for Zakumi football. Course Info 257. By Aisha Kigongo, Ashley DeSouza, Shreyas</p>
+        <?php
+            echo 'Zakumi goes live';
+        ?>
 
         <script src="js/vendor/jquery-1.8.2.min.js"></script>
         <script src="js/plugins.js"></script>
