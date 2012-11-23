@@ -1,7 +1,5 @@
 <?php
     session_start();
-    $_SESSION['username'] = 'shreyas';
-    $_SESSION['authuser'] = 1;
 ?>
 
 
