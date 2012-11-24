@@ -47,7 +47,7 @@
                     </thead>
                     <tbody>
                         <?php 
-                            $db = mysql_connect('localhost', 'root', 'area32') or die('Unable to connect');
+                            $db = mysql_connect('54.243.36.26', 'dbuser', 'deer') or die('Unable to connect');
                             mysql_select_db('ZAKUMI', $db) or die(mysql_error($db));
 
                             $query = "SELECT TEAMS.NAME AS TEAMS_NAME, TEAMS.STADIUM AS TEAMS_STADIUM, SUM(MATCHES.ATTENDENCE)AS SOLD_SEATS FROM TEAMS, MATCHES WHERE TEAMS.ID=MATCHES.HOME GROUP BY TEAMS.STADIUM ORDER BY YEAR('MATCHES.MATCHDATE');";

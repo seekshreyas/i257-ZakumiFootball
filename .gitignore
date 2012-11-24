@@ -4,7 +4,7 @@
 Icon
 
 #Amazon Permission Files
-.pem
+*.pem
 
 # Thumbnails
 ._*
