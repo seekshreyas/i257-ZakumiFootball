@@ -225,12 +225,13 @@ ul{
     }
 
 
-#container_middle{
+#wrapper_middle{
     float:left;
     width:100%;
     padding:0;
     margin:0;
-    color:#fff; 
+    color:#fff;
+    min-height:700px; 
 }
 
     h2 {
@@ -435,7 +436,7 @@ div.inner-circle {
 
 
 
-circlesArray{
+.circlesArray{
     float:left;
     position:relative;
     width:600px;
@@ -644,12 +645,6 @@ circlesArray{
     clear:both;
     font-family:'OpenSansLight';
     font-size:0.75em;
-    bottom:0;
-
-    position: relative;
-    margin-top: -50px; /* negative value of footer height */
-    height: 50px;
-    clear:both;
 }
 
     .container_footer p{

@@ -47,7 +47,7 @@
 		    <div class="inner-circle">Team1</div>
 		</div>
 
-		<div class="circle">
+		<!-- <div class="circle">
 		    <div class="outer-circle"></div>
 		    <div class="middle-circle"></div>
 		    <div class="inner-circle">Team2</div>
@@ -63,7 +63,7 @@
 		    <div class="outer-circle"></div>
 		    <div class="middle-circle"></div>
 		    <div class="inner-circle">Team4</div>
-		</div>
+		</div> -->
 	</div>
 </div>
 
