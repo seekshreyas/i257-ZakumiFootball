@@ -5,8 +5,61 @@ ZAKUMI = (function(){
 	var init = function(){
 		console.log("initiated");
 
-		initCircleInteractions();
+		initPageInteractions();
+		//initCircleInteractions();
 
+	}
+
+	function initPageInteractions(){
+		//get usable page title name
+		var pageTitleStr = jQuery('title').text();
+		var pageTitleArr = pageTitleStr.split('|');
+		var pageTitle = pageTitleArr[0];
+
+		switch(pageTitle){
+			//note the I have added an extra blank space in the string matching for switch statement.
+			//that is how it is there in the title element
+			case 'TEAM ':
+				initCircleInteractions();
+				
+				break;
+			case 'REPORT ':
+				initReportInteractions();
+
+				break;
+			default:
+				console.log("page without a specific javascript code");
+		}
+
+	}
+
+
+	function initReportInteractions(){
+		//console.log("report interactions");
+		
+		//initializing isotope
+		jQuery('#container').isotope({
+		  	// options
+		  	itemSelector : '.item',
+		  	layoutMode : 'fitRows',
+		  	getSortData : {
+		  		name : function($elem){
+		  			return $elem.find('.name').text();
+		  		},
+		  		matches : function ( $elem ) {
+			    	return parseInt( $elem.find('.name').attr('data-matches'));
+				}
+			}
+		});
+
+		//sorting buttons
+		jQuery('#sort-by a').click(function(){
+			console.log("sort by button clicked");
+			// get href attribute, minus the '#'
+			var sortName = jQuery(this).attr('href').slice(1);
+			jQuery('#container').isotope({ sortBy : sortName });
+			return false;
+		});
 	}
 
 

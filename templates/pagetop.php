@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Zakumi | Home</title>
+        <title><?php echo $pageTitle ?></title>
         <meta name="description" content="football database">
         <meta name="viewport" content="width=device-width">
 
