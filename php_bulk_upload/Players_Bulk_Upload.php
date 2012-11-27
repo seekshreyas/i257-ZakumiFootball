@@ -15,7 +15,7 @@
         
         //Insert Query
         while (($data = fgetcsv($handle, ",")) !== FALSE){
-        mysql_query("INSERT INTO PLAYERS (NAME, DOB, PLACEBIRTH, SALARY, STREET, CITY, COUNTRY, PLAYERPHOTO) VALUES('".$data[0]."','".$data[1]."','".$data[2]."','".$data[3]."','".$data[4]."','".$data[5]."','".$data[6]."','".$data[7]."')") or die(mysql_error()); 
+        mysql_query("INSERT INTO PLAYERS (ID, NAME, DOB, PLACEBIRTH, SALARY, STREET, CITY, COUNTRY, PLAYERPHOTO) VALUES('".$data[0]."','".$data[1]."','".$data[2]."','".$data[3]."','".$data[4]."','".$data[5]."','".$data[6]."','".$data[7]."','".$data[8]."')") or die(mysql_error()); 
         echo "Row Successfully created in db!!";
         echo '</br>';
         }
