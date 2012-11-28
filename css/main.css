@@ -814,9 +814,22 @@ div.inner-circle {
         margin:0;
       }
 
+      .sbox_content{
+        width:100%;
+        float:left;
+        margin:0;
+        padding:0;
+      }
 
 /* MODULE END */
 
+
+/*MODULE::LOGIN PAGE;*/
+#userlogin{
+  width:80%;
+  float:left;
+  margin:10px 0 0 10%;
+}
 
 
 

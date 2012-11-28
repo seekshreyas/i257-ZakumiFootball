@@ -57,6 +57,16 @@ ZAKUMI = (function(){
 			//show slimbox
 			jQuery('.wrapper_slimbox').addClass('active');
 
+			//slimbox interactions
+			switch(triggerid){
+				case 'login':
+					userlogin();
+
+					break;
+				default:
+					console.log("no specific interaction handle");
+			}
+
 			jQuery('.slimboxclose').click(function()
 			{
 				jQuery('.wrapper_slimbox').removeClass('active');
@@ -71,6 +81,12 @@ ZAKUMI = (function(){
 		}
 	}
 
+
+	function userlogin(){
+		console.log("login submitted");
+
+		
+	}
 
 
 
