@@ -17,6 +17,10 @@ ZAKUMI = (function(){
 		switch(pageTitle){
 			//note the I have added an extra blank space in the string matching for switch statement.
 			//that is how it is there in the title element
+			case 'HOME ':
+				initSlimbox();
+
+				break;
 			case 'TEAM ':
 				initCircleInteractions();
 				
@@ -30,6 +34,43 @@ ZAKUMI = (function(){
 		}
 
 	}
+
+	function initSlimbox(){
+		console.log("initiate slimbox");
+
+		jQuery('.trigger_slimbox').click(function()
+		{
+			var btnid = jQuery(this).attr('id');
+			btnid = btnid.slice(4);
+			
+
+			initSlimboxInteractions(btnid);
+		});
+
+
+		function initSlimboxInteractions(triggerid){
+			//swap the sbox content box from content to slimbox
+			var sboxcontent = jQuery('#sbox_'+triggerid)[0];
+			jQuery('#sbox_'+triggerid).remove();
+			jQuery('.slimbox').append(sboxcontent);
+
+			//show slimbox
+			jQuery('.wrapper_slimbox').addClass('active');
+
+			jQuery('.slimboxclose').click(function()
+			{
+				jQuery('.wrapper_slimbox').removeClass('active');
+
+				var removebox = jQuery('.slimbox').find('.sbox');
+				var removeboxcontent = removebox[0];
+				removebox.remove();
+
+				jQuery('.sbox_container').append(removeboxcontent);
+
+			});
+		}
+	}
+
 
 
 

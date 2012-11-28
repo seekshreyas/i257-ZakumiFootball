@@ -8,7 +8,7 @@
       		<form class="miniform" id="globalsearch">
       			<input type="text" placeholder="Search" />
       		</form>
-      		<button id="btn_login" class="btn btn_large btn_green">Login</button>
+      		<button id="btn_login" class="trigger_slimbox btn btn_large btn_green">Login</button>
 		</div>
 		
 	</div>

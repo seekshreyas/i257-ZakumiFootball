@@ -48,7 +48,5 @@
         </div>
     </div>
 </div>
-<div class="wrapper_slimbox">
-    
-</div>
+<?php include 'templates/slimbox.php' ?>
 <?php include 'templates/pagebottom.php' ?>

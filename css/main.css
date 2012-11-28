@@ -742,6 +742,84 @@ div.inner-circle {
 
 
 
+/*
+** MODULE:: SLIMBOX;
+*/
+.wrapper_slimbox{
+  position:absolute;
+  top:0;
+  left:0;
+  display:none;
+  width:100%;
+  height:100%;
+}
+
+.wrapper_slimbox.active{
+  display:block;
+}
+
+  .overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display:block;
+    z-index:10;
+    background:rgba(30,30,30, 0.8);
+  }
+
+  .slimboxclose{
+    display:block;
+    width:16px;
+    height:16px;
+    background:url(../img/btn_close.png) center center no-repeat;
+    position:absolute;
+    top:0.75em;
+    right:2%;
+    cursor: pointer;
+  }
+
+  .slimbox{
+    position:relative;
+    z-index:20;
+    background:#fff;
+    width:60%;
+    margin:5% 0 0 20%;
+    float:left;
+
+/*    -webkit-border-radius: 12px;
+            border-radius: 12px;
+
+    -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;*/
+
+  }
+    .sbox{
+      float:left;
+      width:100%;
+      overflow: hidden;
+    }
+
+    /*login page*/
+    #sbox_login{
+      height:300px;
+    }
+
+      .sbox h3{
+        float:left;
+        display:block;
+        width:90%;
+        padding:0.5em 5%;
+        background:#bfbfbf;
+        margin:0;
+      }
+
+
+/* MODULE END */
+
+
+
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
