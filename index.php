@@ -48,10 +48,7 @@
         </div>
     </div>
 </div>
-
-<?php 
-    echo SQL_SERVER;
-?>
-
-
+<div class="wrapper_slimbox">
+    
+</div>
 <?php include 'templates/pagebottom.php' ?>
