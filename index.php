@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include 'config.php';
 
     $pageTitle = 'HOME | landing page';
 ?>
@@ -47,6 +48,10 @@
         </div>
     </div>
 </div>
+
+<?php 
+    echo SQL_SERVER;
+?>
 
 
 <?php include 'templates/pagebottom.php' ?>

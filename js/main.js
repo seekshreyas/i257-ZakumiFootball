@@ -34,19 +34,19 @@ ZAKUMI = (function(){
 	}
 
 
+
 	function initReportInteractions(){
 		//console.log("report interactions");
 		
 		//initializing isotope
 		jQuery('#container').isotope({
-		  	// options
 		  	itemSelector : '.item',
 		  	layoutMode : 'fitRows',
 		  	getSortData : {
 		  		name : function($elem){
 		  			return $elem.find('.name').text();
 		  		},
-		  		matches : function ( $elem ) {
+		  		matches : function ($elem) {
 			    	return parseInt( $elem.find('.name').attr('data-matches'));
 				}
 			}
@@ -65,16 +65,16 @@ ZAKUMI = (function(){
 
 	function initCircleInteractions()
 	{
-		$('div.circle').mouseover(function() {
-			var elem = jQuery(this);
-	        elem.find('div.outer-circle').addClass('hover');
-	        elem.find('div.middle-circle').addClass('hover');
-	    });
-	    $('div.circle').mouseout(function() {
-	    	var elem = jQuery(this);
-	        elem.find('div.outer-circle').removeClass('hover');
-	        elem.find('div.middle-circle').removeClass('hover');
-	    });
+		// $('div.circle').mouseover(function() {
+		// 	var elem = jQuery(this);
+	 //        elem.find('div.outer-circle').addClass('hover');
+	 //        elem.find('div.middle-circle').addClass('hover');
+	 //    });
+	 //    $('div.circle').mouseout(function() {
+	 //    	var elem = jQuery(this);
+	 //        elem.find('div.outer-circle').removeClass('hover');
+	 //        elem.find('div.middle-circle').removeClass('hover');
+	 //    });
 
 
 
@@ -97,9 +97,9 @@ ZAKUMI = (function(){
 	    });
 
 
-	    // $(".draggableCircles").live('click',function(){
-	    //     addCircle($(this),false);
-	    // });
+	    $(".draggableCircles").live('click',function(){
+	        addCircle($(this),false);
+	    });
 
 
 
