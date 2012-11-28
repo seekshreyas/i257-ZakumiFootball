@@ -11,13 +11,6 @@
 <?php include 'templates/pagetop.php' ?>
 <?php include 'templates/header.php' ?>
 
-<?php
-        if($_SESSION['authuser'] and $_SESSION['authuser'] == 1)
-        {
-            echo "admin user";
-        }
-?>
-
 <div id="wrapper_middle">
     <div class="wrapper_content">
         <div class="wrapper_landing">

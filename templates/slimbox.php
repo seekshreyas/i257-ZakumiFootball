@@ -25,4 +25,22 @@
 			</form>
 		</div>
 	</div>
+
+
+
+	<div class="sbox" id="sbox_logout">
+		<h3>Logout</h3>
+		<div class="sbox_content">
+			<form class="generalform" id="userlogout" action="forms/logout.php" method="POST">
+				<ul>
+					<li>
+						Are you sure you want to logout ?
+					</li>
+					<li>
+						<input class="formsubmit" value="Logout" type="submit" />
+					</li>
+				</ul>
+			</form>
+		</div>
+	</div>
 </div>

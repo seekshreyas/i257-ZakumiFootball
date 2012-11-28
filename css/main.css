@@ -163,6 +163,18 @@ body{
 
 }
 
+.btn_red{
+  color:#fff;
+  background-color: #DA4F49;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#EE5F5B), to(#BD362F));
+  background-image: -webkit-linear-gradient(top, #EE5F5B, #BD362F);
+  background-image:    -moz-linear-gradient(top, #EE5F5B, #BD362F);
+  background-image:      -o-linear-gradient(top, #EE5F5B, #BD362F);
+  background-image:         linear-gradient(to bottom, #EE5F5B, #BD362F);
+  border-color: #BD362F #BD362F #802420;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
 
 /*structure::list*/
 ul{
@@ -219,7 +231,7 @@ ul{
             margin:0 0 0 1em;
         }
 
-    #btn_login{
+    .userlogin{
         float:right;
         clear:right;
     }
@@ -821,11 +833,16 @@ div.inner-circle {
         padding:0;
       }
 
+      .sbox_container{
+        display:none;
+      }
+
 /* MODULE END */
 
 
 /*MODULE::LOGIN PAGE;*/
-#userlogin{
+#userlogin,
+#userlogout{
   width:80%;
   float:left;
   margin:10px 0 0 10%;
