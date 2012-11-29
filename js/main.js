@@ -30,6 +30,7 @@ ZAKUMI = (function(){
 				break;
 			case 'SORT ':
 				initSortInteractions();
+				initSlimbox();
 
 				break;
 			case 'REPORT ':
@@ -142,37 +143,44 @@ ZAKUMI = (function(){
 		});
 
 
-		function initSlimboxInteractions(triggerid){
-			//swap the sbox content box from content to slimbox
-			var sboxcontent = jQuery('#sbox_'+triggerid)[0];
-			jQuery('#sbox_'+triggerid).remove();
-			jQuery('.slimbox').append(sboxcontent);
+		
+	}
 
-			//show slimbox
-			jQuery('.wrapper_slimbox').addClass('active');
+	function initSlimboxInteractions(triggerid){
+		//swap the sbox content box from content to slimbox
+		console.log("trigger", triggerid);
+		var sboxcontent = jQuery('#sbox_'+triggerid)[0];
+		jQuery('#sbox_'+triggerid).remove();
+		jQuery('.slimbox').append(sboxcontent);
 
-			//slimbox interactions
-			switch(triggerid){
-				case 'login':
-					userlogin();
+		//show slimbox
+		jQuery('.wrapper_slimbox').addClass('active');
 
-					break;
-				default:
-					console.log("no specific interaction handle");
-			}
+		//slimbox interactions
+		switch(triggerid){
+			case 'login':
+				userlogin();
 
-			jQuery('.slimboxclose').click(function()
-			{
-				jQuery('.wrapper_slimbox').removeClass('active');
+				break;
+			case 'player':
+				console.log("show player page");
 
-				var removebox = jQuery('.slimbox').find('.sbox');
-				var removeboxcontent = removebox[0];
-				removebox.remove();
-
-				jQuery('.sbox_container').append(removeboxcontent);
-
-			});
+				break;
+			default:
+				console.log("no specific interaction handle");
 		}
+
+		jQuery('.slimboxclose').click(function()
+		{
+			jQuery('.wrapper_slimbox').removeClass('active');
+
+			var removebox = jQuery('.slimbox').find('.sbox');
+			var removeboxcontent = removebox[0];
+			removebox.remove();
+
+			jQuery('.sbox_container').append(removeboxcontent);
+
+		});
 	}
 
 
@@ -295,8 +303,43 @@ ZAKUMI = (function(){
 		//filtering buttons
 		$('#filter-by a').click(function(){
 			var selector = $(this).attr('data-filter');
+			
 			jQuery('#container').isotope({ filter: selector });
 			return false;
+		});
+
+
+		jQuery('.player').click(function(){
+			var playerid = jQuery(this).attr('data-playerid');
+			console.log("playerid", playerid);
+
+			var detailsurl = 'player.php?playerid=' + playerid;
+
+			jQuery('#playerdetails').attr('src', detailsurl);
+
+			initSlimboxInteractions('player');
+		});
+
+		jQuery('.team').click(function(){
+			var teamid = jQuery(this).attr('data-teamid');
+			console.log("teamid", teamid);
+
+			var detailsurl = 'team.php?teamid=' + teamid;
+
+			jQuery('#teamdetails').attr('src', detailsurl);
+
+			initSlimboxInteractions('team');
+		});
+
+		jQuery('.manager').click(function(){
+			var managerid = jQuery(this).attr('data-managerid');
+			console.log("managerid", managerid);
+
+			var detailsurl = 'manager.php?managerid=' + managerid;
+
+			jQuery('#managerdetails').attr('src', detailsurl);
+
+			initSlimboxInteractions('manager');
 		});
 	}
 

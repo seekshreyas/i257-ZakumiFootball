@@ -58,11 +58,16 @@
 		  		$db = mysql_connect(SQL_SERVER, SQL_USERNAME, SQL_PASSWORD) or die('Unable to connect');
     			mysql_select_db(SQL_DB, $db) or die(mysql_error($db));
 
-    			$query = "SELECT TEAMS.NAME AS TEAM_NAME, TEAMS.YRINEXIST AS TEAM_FOUNDED, TEAMS.TEAMBADGE AS TEAM_BADGE FROM ZAKUMI.TEAMS; ";
+    			$query = "SELECT 
+    						TEAMS.ID AS 'TEAM_ID',
+    						TEAMS.NAME AS 'TEAM_NAME', 
+    						TEAMS.YRINEXIST AS 'TEAM_FOUNDED', 
+    						TEAMS.TEAMBADGE AS 'TEAM_BADGE'
+    					FROM 
+    						ZAKUMI.TEAMS; ";
 
     			$result = mysql_query($query, $db) or die(mysql_error($db));
     			$num_rows = mysql_num_rows($result);
-    			echo 'result: '.$result;
 
 			    while($row = mysql_fetch_array($result))
 			    {
@@ -75,7 +80,7 @@
 			        
 			        extract($match);
 
-			        echo '<div class="item team">';
+			        echo '<div class="item team" data-teamid="'.$TEAM_ID.'">';
 			        echo '<p class="name" data-matches="' . $MATCH_WINS .'" data-founded="'.$TEAM_FOUNDED .'">' . $TEAM_NAME .'</p>';
 			        //echo '<p class="name" data-matches="23" data-founded="'. $TEAM_FOUNDED . '">' . $TEAM_NAME . '</p>';
 			        echo '<figure>';
@@ -103,7 +108,7 @@
     						PLAYERINFO.NAME AS PLAYER_NAME, 
     						PLAYERINFO.SALARY AS 'PLAYER_SALARY',
     						PLAYERINFO.PLAYERPHOTO AS 'PLAYER_PHOTO',
-    						PLAYERID, 
+    						PLAYERID AS 'PLAYER_ID', 
     						COUNT(*) AS 'MATCHES_PLAYED',
     						SUM(ROSTER.GOAL) AS 'GOALS_SCORED' , 
     						SUM(ROSTER.YCARDS) AS 'YELLOW_CARDS',
@@ -144,7 +149,7 @@
 			        extract($row);
 
 
-			        echo '<div class="item player">';
+			        echo '<div class="item player" data-playerid="'.$PLAYER_ID.'">';
 			        echo '<p class="name" data-matches="'.$MATCHES_PLAYED.'" data-ycard="'.$YELLOW_CARDS.'" data-rcard="'.$RED_CARDS.'" data-goals="'.$GOALS_SCORED.'" data-salary="'.$PLAYER_SALARY.'">' . $PLAYER_NAME. '</p>';
 			        echo '<figure>';
 			        echo '<img src="img/' . $PLAYER_PHOTO .'" alt="arsenal" />';
@@ -176,6 +181,7 @@
     			$query = "SELECT 
     						MANAGERS.NAME AS 'MANAGER_NAME',
     						MANAGERS.SALARY AS 'MANAGER_SALARY',
+    						MANAGERS.ID AS 'MANAGER_ID',
     						MATCHINFO1.MATCHES_WON AS 'MATCHES_WON', 
     						MANAGERS.MANAGERPHOTO AS 'MANAGER_PHOTO' 
     					FROM 
@@ -215,7 +221,7 @@
 			    {
 			        extract($row);
 
-			        echo '<div class="item manager">';
+			        echo '<div class="item manager" data-managerid="'.$MANAGER_ID.'">';
 			        echo '<p class="name" data-matches="'.$MATCHES_WON.'" data-salary="'.$MANAGER_SALARY.'">'.$MANAGER_NAME.'</p>';
 			        echo '<figure>';
 			        echo '<img src="img/' . $MANAGER_PHOTO .'" alt="arsenal" />';

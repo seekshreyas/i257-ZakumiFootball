@@ -43,4 +43,27 @@
 			</form>
 		</div>
 	</div>
+
+
+	<div class="sbox" id="sbox_player">
+		<h3>Player Details</h3>
+		<div class="sbox_content">
+			<iframe id="playerdetails" width="100%" height="600" src="player.php?playerid=1"></iframe>
+		</div>
+	</div>
+
+	<div class="sbox" id="sbox_manager">
+		<h3>Manager Details</h3>
+		<div class="sbox_content">
+			<iframe id="managerdetails" width="100%" height="600" src="manager.php?managerid=1"></iframe>
+		</div>
+	</div>
+
+	<div class="sbox" id="sbox_team">
+		<h3>Team Details</h3>
+		<div class="sbox_content">
+			<iframe id="teamdetails" width="100%" height="600" src="team.php?teamid=1"></iframe>
+		</div>
+	</div>
+
 </div>
