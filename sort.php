@@ -98,7 +98,7 @@
 			        extract($match);
 
 			        echo '<div class="item team" data-teamid="'.$TEAM_ID.'">';
-			        echo '<p class="name" data-matches="' . $MATCH_WINS .'" data-founded="'.$TEAM_FOUNDED .'">' . $TEAM_NAME .'</p>';
+			        echo '<p class="name" data-matches="' . $MATCH_WINS .'" data-founded="'.$TEAM_FOUNDED .'">' . $TEAM_NAME .' ('.$MATCH_WINS.')</p>';
 			        //echo '<p class="name" data-matches="23" data-founded="'. $TEAM_FOUNDED . '">' . $TEAM_NAME . '</p>';
 			        echo '<figure>';
 			        echo '<img src="img/' . $TEAM_BADGE .'" alt="arsenal" />';
@@ -167,7 +167,7 @@
 
 
 			        echo '<div class="item player" data-playerid="'.$PLAYER_ID.'">';
-			        echo '<p class="name" data-matches="'.$MATCHES_PLAYED.'" data-ycard="'.$YELLOW_CARDS.'" data-rcard="'.$RED_CARDS.'" data-goals="'.$GOALS_SCORED.'" data-salary="'.$PLAYER_SALARY.'">' . $PLAYER_NAME. '</p>';
+			        echo '<p class="name" data-matches="'.$MATCHES_PLAYED.'" data-ycard="'.$YELLOW_CARDS.'" data-rcard="'.$RED_CARDS.'" data-goals="'.$GOALS_SCORED.'" data-salary="'.$PLAYER_SALARY.'">' . $PLAYER_NAME. '('.$MATCHES_PLAYED.')</p>';
 			        echo '<figure>';
 			        echo '<img src="img/' . $PLAYER_PHOTO .'" alt="arsenal" />';
 			        echo '</figure>';
@@ -239,7 +239,7 @@
 			        extract($row);
 
 			        echo '<div class="item manager" data-managerid="'.$MANAGER_ID.'">';
-			        echo '<p class="name" data-matches="'.$MATCHES_WON.'" data-salary="'.$MANAGER_SALARY.'">'.$MANAGER_NAME.'</p>';
+			        echo '<p class="name" data-matches="'.$MATCHES_WON.'" data-salary="'.$MANAGER_SALARY.'">'.$MANAGER_NAME.'('.$MATCHES_WON.')</p>';
 			        echo '<figure>';
 			        echo '<img src="img/' . $MANAGER_PHOTO .'" alt="arsenal" />';
 			        echo '</figure>';
