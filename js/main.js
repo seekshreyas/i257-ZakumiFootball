@@ -278,8 +278,12 @@ ZAKUMI = (function(){
 
 		//sorting buttons
 		jQuery('#sort-by a').click(function(){
-			
-			// get href attribute, minus the '#'
+
+			resetSelector('#sort-by a', 'active');
+
+			jQuery(this).addClass('active');
+
+			// get href attribute, minus the '#''
 			var sortName = jQuery(this).attr('href').slice(1);
 
 			console.log("sort by button clicked", sortName);
@@ -288,8 +292,14 @@ ZAKUMI = (function(){
 			return false;
 		});
 
+		
+
 		//sorting buttons
 		jQuery('#layout-by a').click(function(){
+
+			resetSelector('#layout-by a', 'active');
+
+			jQuery(this).addClass('active');
 			
 			// get href attribute, minus the '#'
 			var layoutName = jQuery(this).attr('href').slice(1);
@@ -302,11 +312,51 @@ ZAKUMI = (function(){
 
 		//filtering buttons
 		$('#filter-by a').click(function(){
+			resetSelector('#filter-by a', 'active');
+			jQuery(this).addClass('active');
+
+			
 			var selector = $(this).attr('data-filter');
 			
 			jQuery('#container').isotope({ filter: selector });
+
+			
+
 			return false;
 		});
+
+		//order buttons
+		$('#order-by a').click(function(){
+			resetSelector('#order-by a', 'active');
+			jQuery(this).addClass('active');
+
+			var selector = $(this).attr('href');
+			if(selector == '#asc')
+			{
+				jQuery('#container').isotope({ sortAscending: true });
+			}else{
+				jQuery('#container').isotope({ sortAscending: false });
+			}
+
+			jQuery('#container').isotope('reLayout',function(){
+				console.log("re layout");
+			});
+			
+			return false;
+		});
+
+
+		function resetSelector(selector, classname){
+			jQuery(selector).each(function()
+			{
+				//reset the active class
+				if(jQuery(this).hasClass(classname)){
+					jQuery(this).removeClass(classname);
+				}
+			});
+		}
+
+
 
 
 		jQuery('.player').click(function(){

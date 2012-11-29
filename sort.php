@@ -11,32 +11,49 @@
     <div class="wrapper_content">
        <h2 class="pagetitle">Page Name</h2>
 
+       <section id="options">
+       		<h3>Sort By: </h3>
+	       	<ul id="sort-by">
+			  <li><a href="#name">name</a></li>
+			  <li><a href="#matches">matches</a></li>
+			  <li><a href="#ycards">yellow cards</a></li>
+			  <li><a href="#rcards">redcards</a></li>
+			  <li><a href="#goals">goals</a></li>
+			  <li><a href="#salary">salary</a></li>
+			  <li><a href="#founded">founded</a></li>
+			</ul>
+		</section>
 
-       <ul id="sort-by">
-		  <li><a href="#name">name</a></li>
-		  <li><a href="#matches">matches</a></li>
-		  <li><a href="#ycards">yellow cards</a></li>
-		  <li><a href="#rcards">redcards</a></li>
-		  <li><a href="#goals">goals</a></li>
-		  <li><a href="#salary">salary</a></li>
-		  <li><a href="#founded">founded</a></li>
-		</ul>
+		<section id="options">
+       		<h3>Sort By: </h3>
+	       	<ul id="order-by">
+			  <li><a href="#asc">Asc</a></li>
+			  <li><a href="#desc">Desc</a></li>
+			</ul>
+		</section>
 
-		<ul id="layout-by">
-		  <li><a href="#fitRows">Fit Rows</a></li>
-		  <li><a href="#cellsByColumn">Cells By Column</a></li>
-		  <li><a href="#cellsByRow">Cells By Row</a></li>
-		  <li><a href="#fitColumns">Fit Columns</a></li>
-		  <li><a href="#masonry">Masonry</a></li>
-		  <li><a href="#masonryHorizontal">Masonry Horizontal</a></li>
-		</ul>
+		<section id="options">
+       		<h3>Filter By: </h3>
+				<ul id="filter-by">
+				  <li><a href="#fitRows" data-filter="*">Show All</a></li>
+				  <li><a href="#teams" data-filter=".team">Teams</a></li>
+				  <li><a href="#players" data-filter=".player">Players</a></li>
+				  <li><a href="#managers" data-filter=".manager">Managers</a></li>
+				</ul>
+		</section>
 
-		<ul id="filter-by">
-		  <li><a href="#fitRows" data-filter="*">Show All</a></li>
-		  <li><a href="#teams" data-filter=".team">Teams</a></li>
-		  <li><a href="#players" data-filter=".player">Players</a></li>
-		  <li><a href="#managers" data-filter=".manager">Managers</a></li>
-		</ul>
+		<section id="options">
+       		<h3>Layout By: </h3>
+				<ul id="layout-by">
+				  <li><a href="#fitRows">Fit Rows</a></li>
+				  <li><a href="#cellsByColumn">Cells By Column</a></li>
+				  <li><a href="#cellsByRow">Cells By Row</a></li>
+				  <li><a href="#fitColumns">Fit Columns</a></li>
+				  <li><a href="#masonry">Masonry</a></li>
+				  <li><a href="#masonryHorizontal">Masonry Horizontal</a></li>
+				</ul>
+		</section>
+
 
 
     	<div id="container">
