@@ -67,18 +67,18 @@
 			    {
 			        extract($row);
 
-			        $matchquery = "SELECT COUNT(*) FROM ZAKUMI.MATCHES WHERE WIN = (SELECT ID FROM ZAKUMI.TEAMS WHERE NAME = '" + $TEAM_NAME + "');";
+			        $matchquery = "SELECT COUNT(*) FROM ZAKUMI.MATCHES WHERE WIN = (SELECT ID FROM ZAKUMI.TEAMS WHERE NAME = '" . $TEAM_NAME . "');";
 			        $matchresult = mysql_query($matchquery, $db) or die(mysql_error($db));
 			        
 			        $match = mysql_fetch_array($matchresult);
 			        
-			        extract($match) ;
+			        extract($match);
 
 			        echo '<div class="item team">';
-			        //echo '<p class="name" data-matches="' + $match + '" data-founded="'+ $TEAM_FOUNDED + '">' + $TEAM_NAME + '</p>';
-			        echo '<p class="name" data-matches="23" data-founded="'+ $TEAM_FOUNDED + '">' + $TEAM_NAME + '</p>';
+			        echo '<p class="name" data-matches="' + $match + '" data-founded="'+ $TEAM_FOUNDED + '">' + $TEAM_NAME + '</p>';
+			        //echo '<p class="name" data-matches="23" data-founded="'. $TEAM_FOUNDED . '">' . $TEAM_NAME . '</p>';
 			        echo '<figure>';
-			        echo '<img src="img/' + $TEAM_BADGE + '" alt="arsenal" />';
+			        echo '<img src="img/' . $TEAM_BADGE .'" alt="arsenal" />';
 			        echo '</figure>';
 			        echo '</div>';
 			    }
