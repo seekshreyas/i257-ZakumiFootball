@@ -6,9 +6,7 @@ ZAKUMI = (function(){
 		console.log("initiated");
 
 		initPageInteractions();
-		//initCircleInteractions();
-
-	}
+	};
 
 	function initPageInteractions(){
 		//get usable page title name
@@ -19,6 +17,10 @@ ZAKUMI = (function(){
 		switch(pageTitle){
 			//note the I have added an extra blank space in the string matching for switch statement.
 			//that is how it is there in the title element
+			case 'HOME ':
+				initSlimbox();
+
+				break;
 			case 'TEAM ':
 				initCircleInteractions();
 				
@@ -33,21 +35,74 @@ ZAKUMI = (function(){
 
 	}
 
+	function initSlimbox(){
+		console.log("initiate slimbox");
+
+		jQuery('.trigger_slimbox').click(function()
+		{
+			var btnid = jQuery(this).attr('id');
+			btnid = btnid.slice(4);
+			
+
+			initSlimboxInteractions(btnid);
+		});
+
+
+		function initSlimboxInteractions(triggerid){
+			//swap the sbox content box from content to slimbox
+			var sboxcontent = jQuery('#sbox_'+triggerid)[0];
+			jQuery('#sbox_'+triggerid).remove();
+			jQuery('.slimbox').append(sboxcontent);
+
+			//show slimbox
+			jQuery('.wrapper_slimbox').addClass('active');
+
+			//slimbox interactions
+			switch(triggerid){
+				case 'login':
+					userlogin();
+
+					break;
+				default:
+					console.log("no specific interaction handle");
+			}
+
+			jQuery('.slimboxclose').click(function()
+			{
+				jQuery('.wrapper_slimbox').removeClass('active');
+
+				var removebox = jQuery('.slimbox').find('.sbox');
+				var removeboxcontent = removebox[0];
+				removebox.remove();
+
+				jQuery('.sbox_container').append(removeboxcontent);
+
+			});
+		}
+	}
+
+
+	function userlogin(){
+		console.log("login submitted");
+
+		
+	}
+
+
 
 	function initReportInteractions(){
 		//console.log("report interactions");
 		
 		//initializing isotope
 		jQuery('#container').isotope({
-		  	// options
-		  	itemSelector : '.item',
-		  	layoutMode : 'fitRows',
-		  	getSortData : {
-		  		name : function($elem){
-		  			return $elem.find('.name').text();
-		  		},
-		  		matches : function ( $elem ) {
-			    	return parseInt( $elem.find('.name').attr('data-matches'));
+			itemSelector : '.item',
+			layoutMode : 'fitRows',
+			getSortData : {
+				name : function($elem){
+					return $elem.find('.name').text();
+				},
+				matches : function ($elem){
+					return parseInt($elem.find('.name').attr('data-matches'), 10);
 				}
 			}
 		});
@@ -65,89 +120,85 @@ ZAKUMI = (function(){
 
 	function initCircleInteractions()
 	{
-		$('div.circle').mouseover(function() {
-			var elem = jQuery(this);
-	        elem.find('div.outer-circle').addClass('hover');
-	        elem.find('div.middle-circle').addClass('hover');
-	    });
-	    $('div.circle').mouseout(function() {
-	    	var elem = jQuery(this);
-	        elem.find('div.outer-circle').removeClass('hover');
-	        elem.find('div.middle-circle').removeClass('hover');
-	    });
+		// $('div.circle').mouseover(function() {
+		//	var elem = jQuery(this);
+		//        elem.find('div.outer-circle').addClass('hover');
+		//        elem.find('div.middle-circle').addClass('hover');
+		//		});
+		//    $('div.circle').mouseout(function() {
+		//		var elem = jQuery(this);
+		//        elem.find('div.outer-circle').removeClass('hover');
+		//        elem.find('div.middle-circle').removeClass('hover');
+		//    });
 
 
 
+		$("#mainCircleContainer").mouseover(function(){
+			TweenLite.to($("#outerCircle"), 0.4,
+			{
+				css: {width:146,height:146,marginLeft:-75, marginTop:-75},
+				ease:Power2.easeOut,
+				onComplete: function(){
+					calculatePositions();
+				}
+			});
+		});
 
-	    $("#mainCircleContainer").mouseover(function(){
-	        TweenLite.to($("#outerCircle"), 0.4, 
-	        	{
-	        		css: {width:146,height:146,marginLeft:-75, marginTop:-75}, 
-	        		ease:Power2.easeOut, 
-	        		onComplete: function(){
-	        			calculatePositions();
-	        		}
-	        	});
-	    });
-
-
-	    $("#mainCircleContainer").mouseleave(function(){
-	    	TweenLite.to($('#outerCircle .resultCircle'),0.3,{css:{autoAlpha:0,scaleX:0.1,scaleY:0.1}});
-	        TweenLite.to($("#outerCircle"), 0.5, {css: {width:80,height:80,marginLeft:-42, marginTop:-42}, ease:Expo.easeOut, delay:0.4, overwrite:"all"});
-	    });
-
-
-	    // $(".draggableCircles").live('click',function(){
-	    //     addCircle($(this),false);
-	    // });
+		
+		$("#mainCircleContainer").mouseleave(function(){
+			TweenLite.to($('#outerCircle .resultCircle'),0.3,{css:{autoAlpha:0,scaleX:0.1,scaleY:0.1}});
+			TweenLite.to($("#outerCircle"), 0.5, {css: {width:80,height:80,marginLeft:-42, marginTop:-42}, ease:Expo.easeOut, delay:0.4, overwrite:"all"});
+		});
 
 
+		$(".draggableCircles").live('click',function(){
+			addCircle($(this),false);
+		});
 
-	    $(".draggableCircles").draggable({
-	    	cancel: "a.ui-icon",
-	    	revert: "invalid",
-	    	helper: "clone",
-	    	zIndex: 120,
-	    	cursor: "move"
+
+
+		$(".draggableCircles").draggable({
+			cancel: "a.ui-icon",
+			revert: "invalid",
+			helper: "clone",
+			zIndex: 120,
+			cursor: "move"
 		});
 
 		$("#mainCircleContainer").droppable({
-		   	accept: ".draggableCircles",
-		    activeClass: "ui-state-highlight",
-		    drop: function( event, ui ) {
-		    	console.log("on drop");
-		    	addCircle( ui.draggable,true ); 
-		    }
-
+			accept: ".draggableCircles",
+			activeClass: "ui-state-highlight",
+			drop: function( event, ui ) {
+				console.log("on drop");
+				addCircle( ui.draggable,true );
+			}
 		});
 
 
 
 		function addCircle($item){
 			var id = $item.attr('class');
-        	id = String(id).split(' ');
-        	id = id[1];
-        	$('#outerCircle').append("<div id='"+id+"' class='resultCircle'></div>");
-        	calculatePositions();
-
+			id = String(id).split(' ');
+			id = id[1];
+			$('#outerCircle').append("<div id='"+id+"' class='resultCircle'></div>");
+			calculatePositions();
 		}
 
 		function calculatePositions(){
 			var radius  = 40+16; // offset here to add some spacing
-		    var num     = $("#outerCircle").children().length;
-		    var dividers= 360/num;
-		    var center  = 58;
-		    var theta   = 0.0;
-
-		    for(var i=0;i<num;i++){
-		        var x0 = Math.round(center+radius*Math.cos(theta));
-		        var y0 = Math.round(center+radius*Math.sin(theta));
-		        $("#outerCircle :nth-child("+(i+1)+")").css({'left':x0,'top':y0});      
-		        var radians = dividers * (Math.PI / 180);
-		        theta +=  radians;
-		    }
-
-		    TweenLite.to($('#outerCircle .resultCircle'),0.2,{css:{autoAlpha:1,scaleX:1,scaleY:1}});
+			var num     = $("#outerCircle").children().length;
+			var dividers= 360/num;
+			var center  = 58;
+			var theta   = 0.0;
+			
+			for(var i=0;i<num;i++){
+				var x0 = Math.round(center+radius*Math.cos(theta));
+				var y0 = Math.round(center+radius*Math.sin(theta));
+				$("#outerCircle :nth-child("+(i+1)+")").css({'left':x0,'top':y0});
+				var radians = dividers * (Math.PI / 180);
+				theta +=  radians;
+			}
+			TweenLite.to($('#outerCircle .resultCircle'),0.2,{css:{autoAlpha:1,scaleX:1,scaleY:1}});
 		}
 	}
 
@@ -156,7 +207,7 @@ ZAKUMI = (function(){
 
 	return {
 		'init' : init
-	}
+	};
 
 })();
 

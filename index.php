@@ -1,7 +1,9 @@
 <?php
     session_start();
+    include 'config.php';
 
     $pageTitle = 'HOME | landing page';
+
 ?>
 
 
@@ -47,6 +49,5 @@
         </div>
     </div>
 </div>
-
-
+<?php include 'templates/slimbox.php' ?>
 <?php include 'templates/pagebottom.php' ?>

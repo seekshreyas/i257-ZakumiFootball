@@ -163,6 +163,18 @@ body{
 
 }
 
+.btn_red{
+  color:#fff;
+  background-color: #DA4F49;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#EE5F5B), to(#BD362F));
+  background-image: -webkit-linear-gradient(top, #EE5F5B, #BD362F);
+  background-image:    -moz-linear-gradient(top, #EE5F5B, #BD362F);
+  background-image:      -o-linear-gradient(top, #EE5F5B, #BD362F);
+  background-image:         linear-gradient(to bottom, #EE5F5B, #BD362F);
+  border-color: #BD362F #BD362F #802420;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
 
 /*structure::list*/
 ul{
@@ -219,7 +231,7 @@ ul{
             margin:0 0 0 1em;
         }
 
-    #btn_login{
+    .userlogin{
         float:right;
         clear:right;
     }
@@ -739,6 +751,102 @@ div.inner-circle {
 
 
 
+
+
+
+/*
+** MODULE:: SLIMBOX;
+*/
+.wrapper_slimbox{
+  position:absolute;
+  top:0;
+  left:0;
+  display:none;
+  width:100%;
+  height:100%;
+}
+
+.wrapper_slimbox.active{
+  display:block;
+}
+
+  .overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display:block;
+    z-index:10;
+    background:rgba(30,30,30, 0.8);
+  }
+
+  .slimboxclose{
+    display:block;
+    width:16px;
+    height:16px;
+    background:url(../img/btn_close.png) center center no-repeat;
+    position:absolute;
+    top:0.75em;
+    right:2%;
+    cursor: pointer;
+  }
+
+  .slimbox{
+    position:relative;
+    z-index:20;
+    background:#fff;
+    width:60%;
+    margin:5% 0 0 20%;
+    float:left;
+
+/*    -webkit-border-radius: 12px;
+            border-radius: 12px;
+
+    -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;*/
+
+  }
+    .sbox{
+      float:left;
+      width:100%;
+      overflow: hidden;
+    }
+
+    /*login page*/
+    #sbox_login{
+      height:300px;
+    }
+
+      .sbox h3{
+        float:left;
+        display:block;
+        width:90%;
+        padding:0.5em 5%;
+        background:#bfbfbf;
+        margin:0;
+      }
+
+      .sbox_content{
+        width:100%;
+        float:left;
+        margin:0;
+        padding:0;
+      }
+
+      .sbox_container{
+        display:none;
+      }
+
+/* MODULE END */
+
+
+/*MODULE::LOGIN PAGE;*/
+#userlogin,
+#userlogout{
+  width:80%;
+  float:left;
+  margin:10px 0 0 10%;
+}
 
 
 
