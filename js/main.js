@@ -14,6 +14,9 @@ ZAKUMI = (function(){
 		var pageTitleArr = pageTitleStr.split('|');
 		var pageTitle = pageTitleArr[0];
 
+		//set page name
+		jQuery('.pagetitle').html(pageTitle + ' Page');
+
 		switch(pageTitle){
 			//note the I have added an extra blank space in the string matching for switch statement.
 			//that is how it is there in the title element
@@ -25,15 +28,106 @@ ZAKUMI = (function(){
 				initCircleInteractions();
 				
 				break;
+			case 'SORT ':
+				initSortInteractions();
+
+				break;
 			case 'REPORT ':
-				initReportInteractions();
+				initReport();
 
 				break;
 			default:
 				console.log("page without a specific javascript code");
 		}
 
+
+
 	}
+
+
+	function initReport(){
+		console.log("initiate test");
+		jQuery.ajax({
+			url: 'info.php',
+			success : function(data){
+				//console.log("response data : ", data);
+
+				cleanResponseData(data);
+			}
+		});
+
+
+		function cleanResponseData(response){
+			console.log("response data : ", response);
+
+			
+			//lets define the structure that we want for clarity
+			var teamInfo = [];
+			var teamInfoTemp = {};
+
+			var currentTeam = ''; //to control the loop
+
+
+			for(var i=0; i<response.length; i++)
+			{
+				//console.log("currentTeam", currentTeam, "data: ", response[i][1]);
+
+				if(currentTeam !== response[i][1]){
+					//reset the temporary variable to add new team
+					//defined a structure too for easier understanding
+					teamInfoTemp = {
+						'team' : {
+							'name' : '',
+							'badge' : '',
+							'founded' : 1900,
+							'stadium' : {
+								'name' : '',
+								'capacity' : 0,
+								'yrbuilt' : 1900,
+								'city' : ''
+							},
+							'manager':{
+								'name' : '',
+								'photo' : '',
+								'salary' : 0,
+								'nationality' : ''
+							},
+							'players' :[]
+						}
+					};
+
+
+
+					teamInfoTemp.team.name = response[i][1]; //team name
+					teamInfoTemp.team.badge = response[i][9]; //team badge
+					teamInfoTemp.team.founded = response[i][3]; //team founded
+					
+					teamInfoTemp.team.stadium.name = response[i][4]; //stadium name
+					teamInfoTemp.team.stadium.capacity = response[i][5]; //stadium capacity
+					teamInfoTemp.team.stadium.yrbuilt = response[i][8]; //stadium yrbuilt
+					teamInfoTemp.team.stadium.city = response[i][7]; //stadium city
+					
+					teamInfoTemp.team.manager.name = response[i][2]; //manager name
+					teamInfoTemp.team.manager.photo = response[i][10]; //manager photo
+					teamInfoTemp.team.manager.salary = response[i][11]; //manager salary
+					teamInfoTemp.team.manager.nationality = response[i][12]; //manager nationality
+
+					teamInfoTemp.team.players.push(response[i][0]); //player name
+
+					teamInfo.push(teamInfoTemp);
+
+				}else{
+					teamInfoTemp.team.players.push(response[i][0]); //player name
+				}
+
+				
+				currentTeam = response[i][1];
+			}
+
+			console.log("team information cleaned:", teamInfo);
+		}
+	}
+
 
 	function initSlimbox(){
 		console.log("initiate slimbox");
@@ -90,29 +184,118 @@ ZAKUMI = (function(){
 
 
 
-	function initReportInteractions(){
+	function initSortInteractions(){
 		//console.log("report interactions");
 		
 		//initializing isotope
 		jQuery('#container').isotope({
 			itemSelector : '.item',
-			layoutMode : 'fitRows',
+			layoutMode : 'cellsByRow',
+			sortAscending : false,
+			masonry : {
+				columnWidth: 250
+			},
+			cellsByRow: {
+				columnWidth: 250,
+				rowHeight: 300
+			},
+			animationOptions: {
+				duration : 750,
+				easing : 'linear',
+				queue : false
+			},
+			masonryHorizontal: {
+				rowHeight: 360
+			},
 			getSortData : {
 				name : function($elem){
 					return $elem.find('.name').text();
 				},
 				matches : function ($elem){
 					return parseInt($elem.find('.name').attr('data-matches'), 10);
+				},
+				ycards : function ($elem){
+					var raw = parseInt($elem.find('.name').attr('data-ycard'), 10);
+
+					if(isNaN(raw))
+					{
+						raw = 0;
+					}
+
+					return raw;
+				},
+				rcards : function ($elem){
+					var raw = parseInt($elem.find('.name').attr('data-rcard'), 10);
+
+					if(isNaN(raw))
+					{
+						raw = 0;
+					}
+
+					return raw;
+				},
+				goals : function ($elem){
+					var raw = parseInt($elem.find('.name').attr('data-goals'), 10);
+
+					if(isNaN(raw))
+					{
+						raw = 0;
+					}
+					return raw;
+					//return parseInt($elem.find('.name').attr('data-goals'), 10);
+				},
+				salary : function ($elem){
+					var raw = parseInt($elem.find('.name').attr('data-salary'), 10);
+
+					if(isNaN(raw))
+					{
+						raw = 0;
+					}
+					return raw;
+					//return parseInt($elem.find('.name').attr('data-salary'), 10);
+				},
+				founded : function ($elem){
+					var raw = parseInt($elem.find('.name').attr('data-founded'), 10);
+
+					if(isNaN(raw))
+					{
+						raw = 0;
+					}
+					return raw;
+					//return parseInt($elem.find('.name').attr('data-founded'), 10);
 				}
+
 			}
 		});
 
 		//sorting buttons
 		jQuery('#sort-by a').click(function(){
-			console.log("sort by button clicked");
+			
 			// get href attribute, minus the '#'
 			var sortName = jQuery(this).attr('href').slice(1);
+
+			console.log("sort by button clicked", sortName);
+
 			jQuery('#container').isotope({ sortBy : sortName });
+			return false;
+		});
+
+		//sorting buttons
+		jQuery('#layout-by a').click(function(){
+			
+			// get href attribute, minus the '#'
+			var layoutName = jQuery(this).attr('href').slice(1);
+
+			console.log("sort by button clicked", layoutName);
+
+			jQuery('#container').isotope({ layoutMode : layoutName });
+			return false;
+		});
+
+		//filtering buttons
+		$('#filter-by a').click(function(){
+			var selector = $(this).attr('data-filter');
+			jQuery('#container').isotope({ filter: selector });
 			return false;
 		});
 	}
