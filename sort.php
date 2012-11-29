@@ -2,7 +2,7 @@
     session_start();
     include 'config.php'; //including the configuration file
 
-    $pageTitle = 'SORT | shreyas';
+    $pageTitle = 'SORT | sorting page';
 ?>
 <!-- Add your site or application content here -->
 <?php include 'templates/pagetop.php' ?>
@@ -40,7 +40,7 @@
 
 
     	<div id="container">
-    		<div class="item player">
+    		<!-- <div class="item player">
 			  	<p class="name" data-matches="123" data-ycard="23" data-rcard="12" data-goals="34" data-salary="200000">Theo Walcott</p>
 			  	<figure>
 			  		<img src="img/profileimages/players/arsenal/theowalcott.png" alt="theo walcott" />
@@ -52,7 +52,7 @@
 		  		<figure>
 		  			<img src="img/profileimages/managers/arsenewenger.png" alt="arsene wenger" />
 		  		</figure>
-		  	</div>
+		  	</div> -->
 
 		  	<?php
 		  		$db = mysql_connect(SQL_SERVER, SQL_USERNAME, SQL_PASSWORD) or die('Unable to connect');
@@ -67,7 +67,7 @@
 			    {
 			        extract($row);
 
-			        $matchquery = "SELECT COUNT(*) FROM ZAKUMI.MATCHES WHERE WIN = (SELECT ID FROM ZAKUMI.TEAMS WHERE NAME = '" . $TEAM_NAME . "');";
+			        $matchquery = "SELECT COUNT(*) AS MATCH_WINS FROM ZAKUMI.MATCHES WHERE WIN = (SELECT ID FROM ZAKUMI.TEAMS WHERE NAME = '" . $TEAM_NAME . "');";
 			        $matchresult = mysql_query($matchquery, $db) or die(mysql_error($db));
 			        
 			        $match = mysql_fetch_array($matchresult);
@@ -75,13 +75,15 @@
 			        extract($match);
 
 			        echo '<div class="item team">';
-			        echo '<p class="name" data-matches="' + $match + '" data-founded="'+ $TEAM_FOUNDED + '">' + $TEAM_NAME + '</p>';
+			        echo '<p class="name" data-matches="' . $MATCH_WINS .'" data-founded="'.$TEAM_FOUNDED .'">' . $TEAM_NAME .'</p>';
 			        //echo '<p class="name" data-matches="23" data-founded="'. $TEAM_FOUNDED . '">' . $TEAM_NAME . '</p>';
 			        echo '<figure>';
 			        echo '<img src="img/' . $TEAM_BADGE .'" alt="arsenal" />';
 			        echo '</figure>';
 			        echo '</div>';
 			    }
+
+			    mysql_close($db);
 			?>
 			
 			<!-- <div class="item team">
@@ -91,43 +93,110 @@
 			  	</figure>
 			</div> -->
 
-			<div class="item player">
+
+			<?php
+		  		$db = mysql_connect(SQL_SERVER, SQL_USERNAME, SQL_PASSWORD) or die('Unable to connect');
+    			mysql_select_db(SQL_DB, $db) or die(mysql_error($db));
+
+    			$query = "SELECT 
+    						PLAYERINFO.NAME AS PLAYER_NAME, 
+    						PLAYERINFO.SALARY AS 'PLAYER_SALARY',
+    						PLAYERINFO.PLAYERPHOTO AS 'PLAYER_PHOTO',
+    						PLAYERID, 
+    						COUNT(*) AS 'MATCHES_PLAYED',
+    						SUM(ROSTER.GOAL) AS 'GOALS_SCORED' , 
+    						SUM(ROSTER.YCARDS) AS 'YELLOW_CARDS',
+    						SUM(ROSTER.RCARDS) AS 'RED_CARDS'
+    					FROM 
+    						ZAKUMI.ROSTER ROSTER,
+    						(
+    							SELECT 
+    								NAME, 
+    								ID AS 'ID', 
+    								SALARY AS 'SALARY',
+    								PLAYERPHOTO AS 'PLAYERPHOTO'
+    							FROM ZAKUMI.PLAYERS 
+    							WHERE 
+    								ID 
+    							IN 
+    								(
+    									SELECT PLAYERID FROM ZAKUMI.ROSTER WHERE LEAGUE_ID 
+    									IN 
+    									(
+    										SELECT ID FROM ZAKUMI.LEAGUEROSTER WHERE TEAMID 
+    										IN 
+    											(
+    												SELECT ID FROM ZAKUMI.TEAMS
+    											)
+    									)
+    								)
+    						) PLAYERINFO
+						WHERE LEAGUE_ID 
+							IN (SELECT ID FROM ZAKUMI.LEAGUEROSTER WHERE TEAMID IN (SELECT ID FROM ZAKUMI.TEAMS)) AND ROSTER.PLAYERID = PLAYERINFO.ID
+						GROUP BY PLAYERID;";
+
+    			$result = mysql_query($query, $db) or die(mysql_error($db));
+    			$num_rows = mysql_num_rows($result);
+    
+			    while($row = mysql_fetch_array($result))
+			    {
+			        extract($row);
+
+			   //      $playerquery =
+    		// 			"SELECT 
+    		// 				PLAYERINFO.NAME AS 'PLAYER_NAME', 
+    		// 				PLAYERINFO.SALARY AS 'PLAYER_SALARY',
+    		// 				COUNT(*) AS 'MATCHES_PLAYED',
+    		// 				SUM(ROSTER.GOAL) AS 'GOALS_SCORED' , 
+    		// 				SUM(YCARDS) AS 'YELLOW_CARDS',
+    		// 				SUM(RCARDS) AS 'RED_CARDS'
+						// FROM 
+						// 	ZAKUMI.ROSTER ROSTER,
+						// 	(
+						// 		SELECT 
+						// 			ID, NAME, SALARY 
+						// 		FROM 
+						// 			ZAKUMI.PLAYERS 
+						// 		WHERE 
+						// 			NAME = '". $PLAYER_NAME ."'
+						// 	) PLAYERINFO
+						// WHERE 
+						// 	ROSTER.PLAYERID = PLAYERINFO.ID;";
+
+			        // $playerresult = mysql_query($playerquery, $db) or die(mysql_error($db));
+			        
+			        // $player = mysql_fetch_array($playerresult);
+			        
+			        // extract($player);
+
+			        echo '<div class="item player">';
+			        echo '<p class="name" data-matches="'.$MATCHES_PLAYED.'" data-ycard="'.$YELLOW_CARDS.'" data-rcard="'.$RED_CARDS.'" data-goals="'.$GOALS_SCORED.'" data-salary="'.$PLAYER_SALARY.'">' . $PLAYER_NAME. '</p>';
+			        echo '<figure>';
+			        echo '<img src="img/' . $PLAYER_PHOTO .'" alt="arsenal" />';
+			        echo '</figure>';
+			        echo '</div>';
+			    }
+
+			    mysql_close($db);
+			?>
+
+
+			<!-- <div class="item player">
 			  	<p class="name" data-matches="23" data-ycard="32" data-rcard="1" data-goals="4" data-salary="20000">Gervinho</p>
 			  	<figure>
 			  		<img src="img/profileimages/players/arsenal/gervinho.png" alt="gervinho" />
 			  	</figure>
-			</div>
-    		<div class="item manager">
+			</div> -->
+    		<!-- <div class="item manager">
 		  		<p class="name" data-matches="134" data-salary="230000">Alan Pardew</p>
 		  		<figure>
 		  			<img src="img/profileimages/managers/alanpardew.png" alt="alan pardew" />
 		  		</figure>
-		  	</div>
-		  	<div class="item player">
-			  	<p class="name" data-matches="53" data-ycard="45" data-rcard="42" data-goals="67" data-salary="654312">Jack Wilshere</p>
-			  	<figure>
-			  		<img src="img/profileimages/players/arsenal/jackwilshere.png" alt="jack wilshere" />
-			  	</figure>
-			</div>
-    		<div class="item manager">
-		  		<p class="name" data-matches="142" data-salary="115409">Roberto Mancini</p>
-		  		<figure>
-		  			<img src="img/profileimages/managers/robertomancini.png" alt="roberto mancini" />
-		  		</figure>
-		  	</div>
+		  	</div> -->
 		  	
-		  	<div class="item player">
-			  	<p class="name" data-matches="234" data-ycard="31" data-rcard="0" data-goals="54" data-salary="541238">David Villa</p>
-			  	<figure>
-			  		<img src="img/profileimages/players/fcbarcelona/davidvilla.png" alt="david villa" />
-			  	</figure>
-			</div>
-    		<div class="item player">
-		  		<p class="name" data-matches="145" data-ycard="67" data-rcard="15" data-goals="64" data-salary="128723">Dani Alves</p>
-		  		<figure>
-		  			<img src="img/profileimages/players/fcbarcelona/danialves.png" alt="dani alves" />
-		  		</figure>
-		  	</div>  
+    		
+		  	
+		  	
 		</div>
     </div>
 </div>
