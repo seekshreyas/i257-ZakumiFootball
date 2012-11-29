@@ -142,32 +142,6 @@
 			    {
 			        extract($row);
 
-			   //      $playerquery =
-    		// 			"SELECT 
-    		// 				PLAYERINFO.NAME AS 'PLAYER_NAME', 
-    		// 				PLAYERINFO.SALARY AS 'PLAYER_SALARY',
-    		// 				COUNT(*) AS 'MATCHES_PLAYED',
-    		// 				SUM(ROSTER.GOAL) AS 'GOALS_SCORED' , 
-    		// 				SUM(YCARDS) AS 'YELLOW_CARDS',
-    		// 				SUM(RCARDS) AS 'RED_CARDS'
-						// FROM 
-						// 	ZAKUMI.ROSTER ROSTER,
-						// 	(
-						// 		SELECT 
-						// 			ID, NAME, SALARY 
-						// 		FROM 
-						// 			ZAKUMI.PLAYERS 
-						// 		WHERE 
-						// 			NAME = '". $PLAYER_NAME ."'
-						// 	) PLAYERINFO
-						// WHERE 
-						// 	ROSTER.PLAYERID = PLAYERINFO.ID;";
-
-			        // $playerresult = mysql_query($playerquery, $db) or die(mysql_error($db));
-			        
-			        // $player = mysql_fetch_array($playerresult);
-			        
-			        // extract($player);
 
 			        echo '<div class="item player">';
 			        echo '<p class="name" data-matches="'.$MATCHES_PLAYED.'" data-ycard="'.$YELLOW_CARDS.'" data-rcard="'.$RED_CARDS.'" data-goals="'.$GOALS_SCORED.'" data-salary="'.$PLAYER_SALARY.'">' . $PLAYER_NAME. '</p>';
@@ -187,12 +161,70 @@
 			  		<img src="img/profileimages/players/arsenal/gervinho.png" alt="gervinho" />
 			  	</figure>
 			</div> -->
-    		<!-- <div class="item manager">
+    		<div class="item manager">
 		  		<p class="name" data-matches="134" data-salary="230000">Alan Pardew</p>
 		  		<figure>
 		  			<img src="img/profileimages/managers/alanpardew.png" alt="alan pardew" />
 		  		</figure>
-		  	</div> -->
+		  	</div>
+
+		  	<?php
+		  		$db = mysql_connect(SQL_SERVER, SQL_USERNAME, SQL_PASSWORD) or die('Unable to connect');
+    			mysql_select_db(SQL_DB, $db) or die(mysql_error($db));
+
+    			$query = "SELECT 
+    						MANAGERS.NAME AS 'MANAGER_NAME',
+    						MANAGERS.SALARY AS 'MANAGER_SALARY',
+    						MATCHINFO1.MATCHES_WON AS 'MATCHES_WON', 
+    						MANAGERS.MANAGERPHOTO AS 'MANAGER_PHOTO' 
+    					FROM 
+    						ZAKUMI.MANAGERS MANAGERS,
+    						(
+    							SELECT COUNT(WIN) AS 'MATCHES_WON', WIN AS 'WIN' 
+    							FROM ZAKUMI.MATCHES WHERE ID IN 
+    								(
+    									SELECT MATCHID FROM ZAKUMI.ROSTER 
+    									WHERE LEAGUE_ID IN 
+    									(
+    										SELECT ID FROM ZAKUMI.LEAGUEROSTER 
+    										WHERE TEAMID IN (SELECT ID FROM ZAKUMI.TEAMS) 
+    										AND 
+    										TOURNAMENTID = 2
+    									)
+									)
+								GROUP BY 
+									WIN
+							) MATCHINFO1
+						WHERE MANAGERS.ID IN 
+							(
+								SELECT MANAGERID FROM ZAKUMI.LEAGUEROSTER WHERE TEAMID IN 
+								(
+									SELECT DISTINCT(WIN) AS 'WINNING_TEAM' FROM ZAKUMI.MATCHES WHERE ID IN 
+										(
+											SELECT MATCHID FROM ZAKUMI.ROSTER 
+											WHERE LEAGUE_ID IN 
+												(
+													SELECT ID FROM ZAKUMI.LEAGUEROSTER 
+													WHERE TEAMID IN (SELECT ID FROM ZAKUMI.TEAMS) AND TOURNAMENTID = 2))) AND TOURNAMENTID = 2 AND MATCHINFO1.WIN = TEAMID);";
+
+    			$result = mysql_query($query, $db) or die(mysql_error($db));
+    			$num_rows = mysql_num_rows($result);
+    
+			    while($row = mysql_fetch_array($result))
+			    {
+			        extract($row);
+
+			        echo '<div class="item manager">';
+			        echo '<p class="name" data-matches="'.$MATCHES_WON.'" data-salary="'.$MANAGER_SALARY.'">'.$MANAGER_NAME.'</p>';
+			        echo '<figure>';
+			        echo '<img src="img/' . $MANAGER_PHOTO .'" alt="arsenal" />';
+			        echo '</figure>';
+			        echo '</div>';
+
+			    }
+
+			    mysql_close($db);
+			?>
 		  	
     		
 		  	
