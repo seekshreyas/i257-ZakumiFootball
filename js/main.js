@@ -29,11 +29,119 @@ ZAKUMI = (function(){
 				initReportInteractions();
 
 				break;
+			case 'TESTREPORT ':
+				initTestReport();
+
+				break;
 			default:
 				console.log("page without a specific javascript code");
 		}
 
 	}
+
+
+	function initTestReport(){
+		console.log("initiate test");
+		jQuery.ajax({
+			url: 'info.php',
+			success : function(data){
+				//console.log("response data : ", data);
+
+				cleanResponseData(data);
+			}
+		});
+
+
+		function cleanResponseData(response){
+			console.log("response data : ", response);
+
+			
+			//lets define the structure that we want for clarity
+		
+			var teamInfoTemp = {
+				'team' : {
+					'name' : '',
+					'badge' : '',
+					'founded' : 1900,
+					'stadium' : {
+						'name' : '',
+						'capacity' : 0,
+						'yrbuilt' : 1900,
+						'city' : ''
+					},
+					'manager':{
+						'name' : '',
+						'photo' : '',
+						'salary' : 0,
+						'nationality' : ''
+					},
+					'players' :[]
+				}
+			};
+
+
+			var teamInfo = [];
+			var currentTeam = ''; //to control the loop
+			var j=0;
+			for(var i=0; i<response.length; i++)
+			{
+				console.log("currentTeam", currentTeam, "data: ", response[i][1]);
+
+				if(currentTeam !== response[i][1]){
+					//directly put the first values
+					teamInfoTemp = {
+						'team' : {
+							'name' : '',
+							'badge' : '',
+							'founded' : 1900,
+							'stadium' : {
+								'name' : '',
+								'capacity' : 0,
+								'yrbuilt' : 1900,
+								'city' : ''
+							},
+							'manager':{
+								'name' : '',
+								'photo' : '',
+								'salary' : 0,
+								'nationality' : ''
+							},
+							'players' :[]
+						}
+					};
+
+
+
+					teamInfoTemp.team.name = response[i][1]; //team name
+					teamInfoTemp.team.badge = response[i][9]; //team badge
+					teamInfoTemp.team.founded = response[i][3]; //team founded
+					
+					teamInfoTemp.team.stadium.name = response[i][4]; //stadium name
+					teamInfoTemp.team.stadium.capacity = response[i][5]; //stadium capacity
+					teamInfoTemp.team.stadium.yrbuilt = response[i][8]; //stadium yrbuilt
+					teamInfoTemp.team.stadium.city = response[i][7]; //stadium city
+					
+					teamInfoTemp.team.manager.name = response[i][2]; //manager name
+					teamInfoTemp.team.manager.photo = response[i][10]; //manager photo
+					teamInfoTemp.team.manager.salary = response[i][11]; //manager salary
+					teamInfoTemp.team.manager.nationality = response[i][12]; //manager nationality
+
+					teamInfoTemp.team.players.push(response[i][0]); //player name
+
+					teamInfo.push(teamInfoTemp);
+
+				}else{
+					teamInfoTemp.team.players.push(response[i][0]); //player name
+				}
+
+				
+				currentTeam = response[i][1];
+			}
+
+			console.log("team information cleaned:", teamInfo);
+		}
+	}
+
 
 	function initSlimbox(){
 		console.log("initiate slimbox");

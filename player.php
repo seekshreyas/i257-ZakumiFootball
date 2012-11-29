@@ -5,12 +5,6 @@
     $pageTitle = 'TEAM | team page';
 ?>
 
-
-<!-- Add your site or application content here -->
-<?php include 'templates/pagetop.php' ?>
-<?php include 'templates/header.php' ?>
-
-
 <?php 
     $db = mysql_connect(SQL_SERVER, SQL_USERNAME, SQL_PASSWORD) or die('Unable to connect');
     mysql_select_db(SQL_DB, $db) or die(mysql_error($db));
@@ -67,6 +61,13 @@
 
 
 ?>
+
+<!-- Add your site or application content here -->
+<?php include 'templates/pagetop.php' ?>
+<?php include 'templates/header.php' ?>
+
+
+
 
 
 <div id="wrapper_middle">
