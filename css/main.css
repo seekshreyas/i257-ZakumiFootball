@@ -249,7 +249,14 @@ ul{
     h2 {
         float:left;
         clear:both;
-        width:80%;
+        width:96%;
+    }
+
+    .pagetitle{
+      padding:0.5em 2%;
+      font-family: 'OpenSansLight', sans-serif;
+      display:block;
+      background:rgba(30, 30, 30, 0.8);
     }
 
     .generalform{
