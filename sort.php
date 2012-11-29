@@ -2,7 +2,7 @@
     session_start();
     include 'config.php'; //including the configuration file
 
-    $pageTitle = 'SORT | team page';
+    $pageTitle = 'SORT | SHREYAS';
 ?>
 <!-- Add your site or application content here -->
 <?php include 'templates/pagetop.php' ?>
