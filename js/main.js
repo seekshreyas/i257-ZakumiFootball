@@ -291,6 +291,13 @@ ZAKUMI = (function(){
 			jQuery('#container').isotope({ layoutMode : layoutName });
 			return false;
 		});
+
+		//filtering buttons
+		$('#filter-by a').click(function(){
+			var selector = $(this).attr('data-filter');
+			jQuery('#container').isotope({ filter: selector });
+			return false;
+		});
 	}
 
 

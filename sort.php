@@ -31,6 +31,13 @@
 		  <li><a href="#masonryHorizontal">Masonry Horizontal</a></li>
 		</ul>
 
+		<ul id="filter-by">
+		  <li><a href="#fitRows" data-filter="*">Show All</a></li>
+		  <li><a href="#teams" data-filter=".team">Teams</a></li>
+		  <li><a href="#players" data-filter=".player">Players</a></li>
+		  <li><a href="#managers" data-filter=".manager">Managers</a></li>
+		</ul>
+
 
     	<div id="container">
     		<div class="item player">
