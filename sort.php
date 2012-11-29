@@ -58,7 +58,7 @@
 		  		$db = mysql_connect(SQL_SERVER, SQL_USERNAME, SQL_PASSWORD) or die('Unable to connect');
     			mysql_select_db(SQL_DB, $db) or die(mysql_error($db));
 
-    			$query = "SELECT TEAMS.NAME AS TEAM_NAME, TEAMS.YRINEXIST AS TEAM_FOUNDED, TEAMS.TEAMBADGE AS TEAM_BADGE FROM TEAMS; ";
+    			$query = "SELECT TEAMS.NAME AS TEAM_NAME, TEAMS.YRINEXIST AS TEAM_FOUNDED, TEAMS.TEAMBADGE AS TEAM_BADGE FROM ZAKUMI.TEAMS; ";
 
     			$result = mysql_query($query, $db) or die(mysql_error($db));
     			$num_rows = mysql_num_rows($result);
