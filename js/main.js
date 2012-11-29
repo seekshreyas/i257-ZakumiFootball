@@ -25,12 +25,12 @@ ZAKUMI = (function(){
 				initCircleInteractions();
 				
 				break;
-			case 'REPORT ':
-				initReportInteractions();
+			case 'SORT ':
+				initSortInteractions();
 
 				break;
-			case 'TESTREPORT ':
-				initTestReport();
+			case 'REPORT ':
+				initReport();
 
 				break;
 			default:
@@ -40,7 +40,7 @@ ZAKUMI = (function(){
 	}
 
 
-	function initTestReport(){
+	function initReport(){
 		console.log("initiate test");
 		jQuery.ajax({
 			url: 'info.php',
@@ -57,38 +57,19 @@ ZAKUMI = (function(){
 
 			
 			//lets define the structure that we want for clarity
-		
-			var teamInfoTemp = {
-				'team' : {
-					'name' : '',
-					'badge' : '',
-					'founded' : 1900,
-					'stadium' : {
-						'name' : '',
-						'capacity' : 0,
-						'yrbuilt' : 1900,
-						'city' : ''
-					},
-					'manager':{
-						'name' : '',
-						'photo' : '',
-						'salary' : 0,
-						'nationality' : ''
-					},
-					'players' :[]
-				}
-			};
-
-
 			var teamInfo = [];
+			var teamInfoTemp = {};
+
 			var currentTeam = ''; //to control the loop
-			var j=0;
+
+
 			for(var i=0; i<response.length; i++)
 			{
-				console.log("currentTeam", currentTeam, "data: ", response[i][1]);
+				//console.log("currentTeam", currentTeam, "data: ", response[i][1]);
 
 				if(currentTeam !== response[i][1]){
-					//directly put the first values
+					//reset the temporary variable to add new team
+					//defined a structure too for easier understanding
 					teamInfoTemp = {
 						'team' : {
 							'name' : '',
@@ -198,7 +179,7 @@ ZAKUMI = (function(){
 
 
 
-	function initReportInteractions(){
+	function initSortInteractions(){
 		//console.log("report interactions");
 		
 		//initializing isotope
