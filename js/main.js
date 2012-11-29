@@ -170,6 +170,12 @@ ZAKUMI = (function(){
 				console.log("no specific interaction handle");
 		}
 
+		jQuery('body, html').animate({
+			scrollTop: 100
+		}, 200);
+
+
+
 		jQuery('.slimboxclose').click(function()
 		{
 			jQuery('.wrapper_slimbox').removeClass('active');

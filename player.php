@@ -11,13 +11,14 @@
 <!-- Add your site or application content here -->
 
 <?php include 'templates/pagetop.php' ?>
-		<h2>Player Details</h2>
+		<!-- <h2>Player Details</h2> -->
         <table class="generaltable">
             <thead>
                 <tr>
-                    <th>PLAYERS_NAME</th>
-                    <th>PLAYERS_DOB</th>
-                    <th>PLAYERS_SALARY</th>
+                	<th>PHOTO</th>
+                    <th>NAME</th>
+                    <th>DOB</th>
+                    <th>SALARY</th>
             </thead>
             <tbody>
                 <?php 
@@ -65,7 +66,8 @@
                     $query = "SELECT 
                     			PLAYERS.NAME AS 'PLAYERS_NAME',
                     			PLAYERS.DOB AS 'PLAYERS_DOB',
-                    			PLAYERS.SALARY AS 'PLAYERS_SALARY'
+                    			PLAYERS.SALARY AS 'PLAYERS_SALARY',
+                    			PLAYERS.PLAYERPHOTO AS 'PLAYERS_PHOTO'
                     		FROM 
                     			ZAKUMI.PLAYERS
                     		WHERE
@@ -78,6 +80,7 @@
                         extract($row);
 
                         echo '<tr>';
+                        echo '<td><img class="detailimage" alt="detailimage" width="60" height="60" src="img/'.$PLAYERS_PHOTO.'" /></td>';
                         echo '<td>' . $PLAYERS_NAME . '</td>';
                         echo '<td>' . $PLAYERS_DOB . '</td>';
                         echo '<td>' . $PLAYERS_SALARY . '</td>';

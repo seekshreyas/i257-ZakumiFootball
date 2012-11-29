@@ -11,13 +11,14 @@
 <!-- Add your site or application content here -->
 
 <?php include 'templates/pagetop.php' ?>
-		<h2>Manager Details</h2>
+		<!-- <h2>Manager Details</h2> -->
         <table class="generaltable">
             <thead>
                 <tr>
-                    <th>MANAGER_NAME</th>
-                    <th>MANAGER_NATIONALITY</th>
-                    <th>MANAGER_COUNTRY</th>
+                	<th>PHOTO</th>
+                    <th>NAME</th>
+                    <th>NATIONALITY</th>
+                    <th>SALARY</th>
                      
             </thead>
             <tbody>
@@ -31,7 +32,8 @@
                     $query = "SELECT 
                     			MANAGERS.NAME AS 'MANAGERS_NAME',
                     			MANAGERS.NATIONALITY AS 'MANAGERS_NATIONALITY',
-                    			MANAGERS.SALARY AS 'MANAGERS_SALARY'
+                    			MANAGERS.SALARY AS 'MANAGERS_SALARY',
+                    			MANAGERS.MANAGERPHOTO AS 'MANAGERS_PHOTO'
                     		FROM 
                     			ZAKUMI.MANAGERS
                     		WHERE
@@ -44,6 +46,7 @@
                         extract($row);
 
                         echo '<tr>';
+                        echo '<td><img class="detailimage" alt="detailimage" width="60" height="60" src="img/'.$MANAGERS_PHOTO.'" /></td>';
                         echo '<td>' . $MANAGERS_NAME . '</td>';
                         echo '<td>' . $MANAGERS_NATIONALITY . '</td>';
                         echo '<td>' . $MANAGERS_SALARY . '</td>';

@@ -289,18 +289,31 @@ ul{
         float:left;
         clear:both;
         margin:1em 0;
-        width:60%;
+        width:90%;
+        background:#fff;
     }
         .generaltable thead tr{
             border-bottom:1px dashed #fff;
         }
+
+        .generaltable tbody tr:nth-child(odd) {
+            background-color: #ccc;
+        }
+
+        .generaltable tbody tr:hover{
+            background-color: #c00;
+        }
             .generaltable th{
                 text-align: left;
+                padding:0.5em;
             }
 
             .generaltable td{
                 font-size:0.75em;
+                padding:0.5em;
             }
+
+
 
 
 
