@@ -62,7 +62,8 @@
 
     			$result = mysql_query($query, $db) or die(mysql_error($db));
     			$num_rows = mysql_num_rows($result);
-    
+    			echo 'result: '.$result;
+
 			    while($row = mysql_fetch_array($result))
 			    {
 			        extract($row);
