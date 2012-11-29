@@ -53,13 +53,43 @@
 		  			<img src="img/profileimages/managers/arsenewenger.png" alt="arsene wenger" />
 		  		</figure>
 		  	</div>
+
+		  	<?php
+		  		$db = mysql_connect(SQL_SERVER, SQL_USERNAME, SQL_PASSWORD) or die('Unable to connect');
+    			mysql_select_db(SQL_DB, $db) or die(mysql_error($db));
+
+    			$query = "SELECT TEAMS.NAME AS TEAM_NAME, TEAMS.YRINEXIST AS TEAM_FOUNDED, TEAMS.TEAMBADGE AS TEAM_BADGE FROM TEAMS; ";
+
+    			$result = mysql_query($query, $db) or die(mysql_error($db));
+    			$num_rows = mysql_num_rows($result);
+    
+			    while($row = mysql_fetch_array($result))
+			    {
+			        extract($row);
+
+			        $matchquery = "SELECT COUNT(*) FROM ZAKUMI.MATCHES WHERE WIN = (SELECT ID FROM ZAKUMI.TEAMS WHERE NAME = '" + $TEAM_NAME + "');";
+			        $matchresult = mysql_query($matchquery, $db) or die(mysql_error($db));
+			        
+			        $match = mysql_fetch_array($matchresult);
+			        
+			        extract($match) ;
+
+			        echo '<div class="item team">';
+			        //echo '<p class="name" data-matches="' + $match + '" data-founded="'+ $TEAM_FOUNDED + '">' + $TEAM_NAME + '</p>';
+			        echo '<p class="name" data-matches="23" data-founded="'+ $TEAM_FOUNDED + '">' + $TEAM_NAME + '</p>';
+			        echo '<figure>';
+			        echo '<img src="img/' + $TEAM_BADGE + '" alt="arsenal" />';
+			        echo '</figure>';
+			        echo '</div>';
+			    }
+			?>
 			
-			<div class="item team">
+			<!-- <div class="item team">
 			  	<p class="name" data-matches="512" data-founded="1998">Arsenal</p>
 			  	<figure>
 			  		<img src="img/profileimages/teams/arsenalbadge.png" alt="arsenal" />
 			  	</figure>
-			</div>
+			</div> -->
 
 			<div class="item player">
 			  	<p class="name" data-matches="23" data-ycard="32" data-rcard="1" data-goals="4" data-salary="20000">Gervinho</p>
